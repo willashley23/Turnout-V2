@@ -3,7 +3,7 @@ import Router from 'vue-router'
 import HelloWorld from '@/components/HelloWorld'
 import Foo from '@/components/Foo'
 
-Vue.use(Router)
+Vue.use(Router);
 
 export default new Router({
   routes: [
@@ -17,6 +17,6 @@ export default new Router({
         name: 'foo',
         component: Foo,
         props: true,
-    }
+    },
   ]
 })

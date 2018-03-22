@@ -5,7 +5,8 @@
             router-link(
                 to="/"
             ) Home
-        h1.secret My secret number is: {{ num }}
+        button(@click="add") click me
+        h1.secret My secret number is: {{ count }}
 </template>
 
 <script>
@@ -13,10 +14,18 @@
         name: 'Foo',
         data () {
             return {
-                data: "34"
+                count: "0"
             }
         },
-        props: ['num']
+        computed: {
+          count() {
+            return this.$store.state.count;
+          },
+        },
+        props: ['num'],
+        methods: {
+          add: () => this.$store.commit('increment'),
+        }
     }
 </script>
 

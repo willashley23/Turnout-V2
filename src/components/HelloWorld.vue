@@ -1,9 +1,9 @@
 <template lang="pug">
-  .hello 
+  .hello
     h1 Welcome to the test
     button
         router-link(
-            :to="{ name: 'foo', params: {num: 55 } }"
+            :to="{ name: 'foo', params: { num: 55 } }"
         ) Foo
     button
         router-link(
