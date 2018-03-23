@@ -11,5 +11,5 @@ export default new Vuex.Store({
         increment (state) {
             state.count++;
         }
-    }
+    },
 });

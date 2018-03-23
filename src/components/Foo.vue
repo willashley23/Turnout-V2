@@ -14,7 +14,8 @@
         name: 'Foo',
         data () {
             return {
-                count: "0"
+                // Do I need a data function? Why do I need this if I have computed?
+                foo: 2,
             }
         },
         computed: {
@@ -24,8 +25,10 @@
         },
         props: ['num'],
         methods: {
-          add: () => this.$store.commit('increment'),
-        }
+          add: function() {
+              this.$store.commit('increment');
+          },
+        },
     }
 </script>
 
