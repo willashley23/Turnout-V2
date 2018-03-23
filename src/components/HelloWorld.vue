@@ -1,6 +1,7 @@
 <template lang="pug">
   .hello
     h1 Welcome to the test
+    p The current count is {{ count }}
     button
         router-link(
             :to="{ name: 'foo', params: { num: 55 } }"
@@ -18,11 +19,15 @@ export default {
     return {
       msg: 'Welcome to Your Vue.js App'
     }
+  },
+  computed: {
+      count() {
+          return this.$store.getters.currentCount;
+      },
   }
 }
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss" scoped>
 h1, h2 {
   font-weight: normal;
