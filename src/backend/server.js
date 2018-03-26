@@ -5,33 +5,17 @@ const Sequelize = require('sequelize')
 const epilogue = require('epilogue')
 const ForbiddenError = require('epilogue').Errors.ForbiddenError;
 
-
-// const oktaJwtVerifier = new OktaJwtVerifier({
-//   clientId: '{yourClientId}',
-//   issuer: 'https://{yourOktaDomain}.com/oauth2/default'
-// })
-
 let app = express()
 app.use(cors())
 app.use(bodyParser.json())
 
-// verify JWT token middleware
+// verify authorization header middleware
 app.use((req, res, next) => {
   // require every request to have an authorization header
   if (!req.headers.authorization) {
     return next(new Error('Authorization header is required'))
   }
-  let parts = req.headers.authorization.trim().split(' ')
-  let accessToken = parts.pop()
-  // oktaJwtVerifier.verifyAccessToken(accessToken)
-  //   .then(jwt => {
-  //     req.user = {
-  //       uid: jwt.claims.uid,
-  //       email: jwt.claims.sub
-  //     }
-  //     next()
-  //   })
-  //   .catch(next)
+  next();
 })
 
 // For ease of this tutorial, we are going to use SQLite to limit dependencies
@@ -59,8 +43,13 @@ let userResource = epilogue.resource({
   endpoints: ['/users', '/users/:id']
 })
 
-userResource.create.auth(function(req, res, context) {
-  throw new ForbiddenError("can't delete a user");
+userResource.list.write(function(req, res, context) {
+  // Move to user model
+  User.create({
+    username: req.username,
+    password: req.password,
+  })
+  context.continue();
 })
 
 // Resets the database and launches the express app on :8081

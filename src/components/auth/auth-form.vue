@@ -53,9 +53,9 @@
     methods: {
       login() {
         console.log(this.username, this.password);
-        this.$http.post('/users', { username: this.username, password: this.password })
-          .then(request => this._onLoginSuccess(request))
-          .catch(() => this._onLoginFailed())
+        this.$http.post('/users', { username: this.username, password: this.password }, {timeout: 3000})
+          .then(request => { console.log('f'); this._onLoginSuccess(request)})
+          .catch(() => this._onLoginFailed());
       },
 
       _onLoginSuccess(req) {
