@@ -4,6 +4,8 @@ const bodyParser = require('body-parser')
 const Sequelize = require('sequelize')
 const epilogue = require('epilogue')
 const ForbiddenError = require('epilogue').Errors.ForbiddenError;
+const jwt = require('jsonwebtoken');
+
 
 let app = express()
 app.use(cors())
@@ -43,13 +45,25 @@ let userResource = epilogue.resource({
   endpoints: ['/users', '/users/:id']
 })
 
-userResource.list.write(function(req, res, context) {
+userResource.create.write.before(function(req, res, context) {
   // Move to user model
   User.create({
-    username: req.username,
-    password: req.password,
+    username: req.body.username,
+    password: req.body.password,
   })
-  context.continue();
+  .then( user => {
+    let signedToken = jwt.sign(
+      { user: user.id },
+      'secret',
+      { expiresIn: 24 * 60 * 60 });
+    
+      res.send(200,
+        {'token': signedToken,
+        'userId':  user.id,
+        'username': user.username }
+      );
+      return context.skip();
+    });
 })
 
 // Resets the database and launches the express app on :8081

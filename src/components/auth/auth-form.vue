@@ -55,11 +55,11 @@
         console.log(this.username, this.password);
         this.$http.post('/users', { username: this.username, password: this.password }, {timeout: 3000})
           .then(request => { console.log('f'); this._onLoginSuccess(request)})
-          .catch(() => this._onLoginFailed());
+          .catch((error) => this._onLoginFailed());
       },
 
       _onLoginSuccess(req) {
-        console.log("dsf")
+        console.log("succeeded")
         if (!req.data.token) {
           this._onLoginFailed();
           return;
@@ -71,8 +71,8 @@
         this.$router.replace(this.$route.query.redirect || "/findme");
       },
 
-      _onLoginFailed(req) {
-        console.log("sdfs")
+      _onLoginFailed(error) {
+        console.log("failed")
         this.error = 'Login failed!';
         delete localStorage.token;
       }

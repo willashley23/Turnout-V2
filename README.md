@@ -18,9 +18,11 @@ It is a solid stack that served me well. But the world of the web does not sit s
 * VueX
 * Node
 * Sequelize
+* Axios
+* Epilogue
 * Sass
 * Pug
-* Mocha and Chai
+* Mocha and Chai / Jest
 * Cypress
 * Webpack
 * Some Crypto Library
@@ -38,10 +40,6 @@ As I see it, Rails is on its last legs. While there are plenty of production-sca
 When I first name Turnout, I didn't use a pre-processor for styles. *This was a mistake.* Looking back on it and seeing that massive css file that houses *all* of the app's style makes me cringe. Vue is the antithesis of this with its notion of single-file components. In fact, today, there is really no reason to not use a pre-processor. They are simply more intutive, streamlined, and readable. I also was bound by JSX, but no longer, and am happy to be using Pug, which I find to be an excellent templating language.
 
 I didn't get a chance to write unit tests last time, so I'll be doing that this time around. If I'm feeling *really* ambitious, I'll add webdriver tests using Cypress. I'm really excited for what Cypress has to offer, and as someone who has *suffered* though the crucible that is writing Selenium tests, I think this will be a welcome experiment. I want to consider using Parcel as a module bundler, becuase bleeding edge, but may not have time. 
-
-Last, I ain't fussing around with hand-rolled auth this time. In fact, I may only make 2 demo accounts just to spare me the trouble. It was a fun experiment but simply an entire beast of its own.
-
-
 
 ## Build Setup
 
