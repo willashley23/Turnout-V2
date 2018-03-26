@@ -1,16 +1,30 @@
 <template lang="pug">
-  form
+  form(@submit.prevent="login")
     .input-group(v-bind:class="{ 'input-group--error': $v.username.$error }")
       label(for="username") Username
       input.brite-input(
         v-model.trim="username" 
-        @input="$v.username.$touch()" 
         type="text"
+        @input="$v.username.$touch()" 
       )
       .input-group-errors
         span.brite-error(v-if="!$v.username.required && $v.username.$dirty") Please enter your username
         span.brite-error(v-if="!$v.username.minLength") Username must be at least 4 chars long
-    button.brite-button.blue(type='submit') Submit
+
+    .input-group
+      label(for="password") Password
+      input.brite-input(
+        v-model.trim="password"
+        type="password"
+        @input="$v.password.$touch()"
+      )
+      .input-group-errors
+        span.brite-error(v-if="!$v.password.required && $v.password.$dirty") Please enter your password
+        span.brite-error(v-if="!$v.password.minLength") Please enter a password of at least 6 characters
+    button.brite-button.blue(
+      type='submit'
+      :disabled="$v.$invalid"
+    ) Submit
 </template>
 
 <script>
@@ -21,6 +35,7 @@
     data () {
       return {
         username: '',
+        password: '',
       }
     },
     validations: {
@@ -28,6 +43,16 @@
         required,
         minLength: minLength(4),
       },
+      password: {
+        required,
+        minLength: minLength(6),
+      },
+    },
+    methods: {
+      login() {
+        console.log(this.username);
+        console.log(this.password);
+      }
     },
   }
 </script>
@@ -92,6 +117,12 @@
 
     &:hover {
       background-color: darken($color: #0093d7, $amount: 15%);
+    }
+
+    &:disabled {
+      background: #fff;
+      border: 1px solid #e5e5e5;
+      color: #e5e5e5;
     }
   }
 </style>
