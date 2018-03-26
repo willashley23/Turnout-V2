@@ -18,5 +18,10 @@ export default new Router({
         component: Foo,
         props: true,
     },
+    {
+      path: '/findme',
+      name: 'findme',
+      component: HelloWorld
+    },
   ]
 })

@@ -37,7 +37,7 @@
       return {
         username: '',
         password: '',
-        error: false
+        error: false,
       }
     },
     validations: {
@@ -53,12 +53,13 @@
     methods: {
       login() {
         console.log(this.username, this.password);
-        this.$http.post('/auth', { username: this.username, password: this.password })
+        this.$http.post('/users', { username: this.username, password: this.password })
           .then(request => this._onLoginSuccess(request))
           .catch(() => this._onLoginFailed())
       },
 
       _onLoginSuccess(req) {
+        console.log("dsf")
         if (!req.data.token) {
           this._onLoginFailed();
           return;
@@ -67,10 +68,11 @@
         localStorage.token = req.data.token;
         this.error = false;
         
-        this.$router.replace(this.$route.query.redirect || "/");
+        this.$router.replace(this.$route.query.redirect || "/findme");
       },
 
       _onLoginFailed(req) {
+        console.log("sdfs")
         this.error = 'Login failed!';
         delete localStorage.token;
       }
@@ -109,7 +111,7 @@
     margin-top: 5px;
     margin-left: 2px;
     text-align: left;
-    width: 100%;
+    width: 255px;
   }
 
   .brite-button {
