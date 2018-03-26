@@ -25,6 +25,7 @@
       type='submit'
       :disabled="$v.$invalid"
     ) Submit
+    span.brite-error(v-if="error") {{ error }}
 </template>
 
 <script>
@@ -36,6 +37,7 @@
       return {
         username: '',
         password: '',
+        error: false
       }
     },
     validations: {
@@ -50,8 +52,27 @@
     },
     methods: {
       login() {
-        console.log(this.username);
-        console.log(this.password);
+        console.log(this.username, this.password);
+        this.$http.post('/auth', { username: this.username, password: this.password })
+          .then(request => this._onLoginSuccess(request))
+          .catch(() => this._onLoginFailed())
+      },
+
+      _onLoginSuccess(req) {
+        if (!req.data.token) {
+          this._onLoginFailed();
+          return;
+        }
+
+        localStorage.token = req.data.token;
+        this.error = false;
+        
+        this.$router.replace(this.$route.query.redirect || "/");
+      },
+
+      _onLoginFailed(req) {
+        this.error = 'Login failed!';
+        delete localStorage.token;
       }
     },
   }
@@ -123,6 +144,7 @@
       background: #fff;
       border: 1px solid #e5e5e5;
       color: #e5e5e5;
+      cursor: default;
     }
   }
 </style>
