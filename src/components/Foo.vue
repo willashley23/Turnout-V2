@@ -11,13 +11,12 @@
 </template>
 
 <script>  
-import authForm from './auth/auth-form.vue'
+import authForm from './auth/AuthForm.vue'
 
 export default {
         name: 'Foo',
         data () {
             return {
-                // Do I need a data function? Why do I need this if I have computed?
                 foo: 2,
             }
         },

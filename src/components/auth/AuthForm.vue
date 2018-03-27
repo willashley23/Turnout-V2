@@ -36,7 +36,7 @@
   import { required, minLength } from 'vuelidate/lib/validators'
 
   export default {
-    name: 'auth-form',
+    name: 'AuthForm',
     data () {
       return {
         username: '',
@@ -64,7 +64,6 @@
       },
 
       login() {
-        console.log(this.username, this.password)
         this.$http.post('/login', { username: this.username, password: this.password }, {timeout: 3000})
           .then(request => this._onAuthSuccess(request))
           .catch(error => this._onAuthFailed(error));
