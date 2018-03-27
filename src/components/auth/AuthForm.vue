@@ -82,6 +82,9 @@
         localStorage.token = req.data.token;
         this.error = false;
         
+        // Do some dispatchin'!
+
+
         // this will probably need to take some params from the parent/router that tells it where to redirect to after authorizing 
         this.$router.replace(this.$route.query.redirect || "/blocked");
       },
