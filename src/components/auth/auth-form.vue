@@ -1,5 +1,5 @@
 <template lang="pug">
-  form(@submit.prevent="login")
+  form(@submit.prevent="register")
     .input-group(v-bind:class="{ 'input-group--error': $v.username.$error }")
       label(for="username") Username
       input.brite-input(
@@ -51,15 +51,23 @@
       },
     },
     methods: {
-      login() {
-        console.log(this.username, this.password);
+      register() {
         this.$http.post('/users', { username: this.username, password: this.password }, {timeout: 3000})
-          .then(request => { console.log('f'); this._onLoginSuccess(request)})
-          .catch((error) => this._onLoginFailed());
+          .then(request => this._onLoginSuccess(request))
+          .catch(error => this._onLoginFailed(error));
+      },
+
+      login() {
+        this.$http.get('/users', { username: this.username, password: this.password })
+          .then(request => this._onLoginSuccess(request))
+          .catch(error => this._onLoginFailed(error));
+      },
+
+      loginGuestUser() {
+
       },
 
       _onLoginSuccess(req) {
-        console.log("succeeded")
         if (!req.data.token) {
           this._onLoginFailed();
           return;
@@ -68,12 +76,12 @@
         localStorage.token = req.data.token;
         this.error = false;
         
+        // this will probably need to take some params from the parent/router that tells it where to redirect to after authorizing 
         this.$router.replace(this.$route.query.redirect || "/findme");
       },
 
       _onLoginFailed(error) {
-        console.log("failed")
-        this.error = 'Login failed!';
+        this.error = 'Your user name and password did not match our records.';
         delete localStorage.token;
       }
     },
