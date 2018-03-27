@@ -1,10 +1,10 @@
-import axios from 'axios';
+import Vue from 'vue';
 
 export const sessionActions = {
   login({ commit }, creds) {
     commit("AUTH_ATTEMPT");
     return new Promise( (resolve, reject) => {
-      axios.post("/login", creds, { timeout: 3000 })
+      Vue.axios.post("/login", creds, { timeout: 3000 })
         .then(res => {
           if (!res.data.token) {
             reject({ error: true });
@@ -26,7 +26,7 @@ export const sessionActions = {
   register({ commit }, creds) {
     commit("AUTH_ATTEMPT");
     return new Promise( (resolve, reject) => {
-      axios.post('/register', creds, { timeout: 3000 })
+      Vue.axios.post('/register', creds, { timeout: 3000 })
         .then(res => {
           if (!res.data.token) {
             reject({ error: true });

@@ -55,9 +55,6 @@
         minLength: minLength(6),
       },
     },
-    beforeCreate() {
-      console.log(this.$store)
-    },
 
     methods: {
       register() {

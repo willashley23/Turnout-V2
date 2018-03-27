@@ -6,19 +6,21 @@ import sessionModule from './session_module/session_module';
 Vue.use(Vuex);
 
 export default new Vuex.Store({
-    state: {
-        count: 0,
-        events: eventsModule,
-        session: sessionModule,
-    },
-    getters: {
-        currentCount: state => {
-            return state.count;
-        },
-    },
-    mutations: {
-        increment (state) {
-            state.count++;
-        }
-    },
+	state: {
+		count: 0,
+	},
+	modules: {
+		events: eventsModule,
+		session: sessionModule,
+	},
+	getters: {
+		currentCount: state => {
+			return state.count;
+		},
+	},
+	mutations: {
+		increment (state) {
+			state.count++;
+		}
+	},
 });
