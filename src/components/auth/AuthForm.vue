@@ -55,17 +55,20 @@
         minLength: minLength(6),
       },
     },
+    beforeCreate() {
+      console.log(this.$store)
+    },
 
     methods: {
       register() {
-        this.$http.post('/register', { username: this.username, password: this.password }, {timeout: 3000})
-          .then(request => this._onAuthSuccess(request))
+        this.$store.dispatch('register', { username: this.username, password: this.password })
+          .then(res => this._onAuthSuccess(res))
           .catch(error => this._onAuthFailed(error));
       },
 
       login() {
-        this.$http.post('/login', { username: this.username, password: this.password }, {timeout: 3000})
-          .then(request => this._onAuthSuccess(request))
+        this.$store.dispatch('login', { username: this.username, password: this.password })
+          .then(res => this._onAuthSuccess(res))
           .catch(error => this._onAuthFailed(error));
       },
 
@@ -73,17 +76,8 @@
 
       },
 
-      _onAuthSuccess(req) {
-        if (!req.data.token) {
-          this._onAuthFailed();
-          return;
-        }
-
-        localStorage.token = req.data.token;
+      _onAuthSuccess(res) {
         this.error = false;
-        
-        // Do some dispatchin'!
-
 
         // this will probably need to take some params from the parent/router that tells it where to redirect to after authorizing 
         this.$router.replace(this.$route.query.redirect || "/blocked");

@@ -1,31 +1,28 @@
+import { sessionActions } from "./session_actions";
 import {
-  LOGIN,
+  AUTH_ATTEMPT,
+  LOGIN_SUCCESS,
   LOGOUT,
-  REGISTER,
-  RECEIVE_CURRENT_USER,
-} from "./session_actions";
+} from "./session_mutations";
 
-export const sessionModule = {
+export default {
   state: {
-    currentUser: null,
+    currentUser: !!localStorage.getItem("token"),
   },
   mutations: {
-    [LOGIN] () {
-
+    [AUTH_ATTEMPT] (state) {
+      state.pending = true;
     },
 
-    [LOGOUT] () {
-
+    [LOGIN_SUCCESS] (state, id) {
+      state.pending = false;
+      state.currentUser = { id };
     },
 
-    [REGISTER] () {
-
-    },
-
-    [RECEIVE_CURRENT_USER] () {
-
+    [LOGOUT] (state) {
+      state.currentUser = false;
     },
   },
-  actions: {},
+  actions: sessionActions,
   getters: {},
 };

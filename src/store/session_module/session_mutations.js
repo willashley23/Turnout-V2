@@ -1,4 +1,3 @@
-export const LOGIN = 'LOGIN';
+export const AUTH_ATTEMPT = 'AUTH_ATTEMPT';
+export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
 export const LOGOUT = 'LOGOUT';
-export const REGISTER = 'REGISTER';
-export const RECEIVE_CURRENT_USER = 'RECEIVE_CURRENT_USER';
