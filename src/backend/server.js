@@ -1,16 +1,16 @@
 const express = require('express')
 const cors = require('cors')
 const bodyParser = require('body-parser')
-const Sequelize = require('sequelize')
-const epilogue = require('epilogue')
-const ForbiddenError = require('epilogue').Errors.ForbiddenError;
-const jwt = require('jsonwebtoken');
-require('./api/authentication_resource.js')(app);
-
+const routes = require('./api');
+const db = require('./models');
 
 let app = express();
+
 app.use(cors());
 app.use(bodyParser.json());
+
+// Connect all our routes to our application
+app.use('/', routes);
 
 // verify authorization header middleware
 app.use((req, res, next) => {
@@ -20,3 +20,5 @@ app.use((req, res, next) => {
   }
   next();
 });
+
+db.init(app);

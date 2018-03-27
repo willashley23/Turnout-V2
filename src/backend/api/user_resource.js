@@ -1,13 +1,12 @@
 const User = require('../models/user');
+const router = require('express').Router();
 
-const userResource = app => {
+router.get('/users', (req, res) => {
+  //do stuff
+  res.send(200, "You got a user!");
+});
 
-  app.get('/users', (req, res) => {
-    // do stuff
-  });
-}
-
-module.exports = userResource;
+module.exports = router;
 
 // let userResource = epilogue.resource({
 //   model: User,
