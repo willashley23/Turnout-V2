@@ -1,11 +1,13 @@
 import Vue from 'vue'
 import Router from 'vue-router'
+import store from '../store'
 import HelloWorld from '@/components/HelloWorld'
+import Blocked from '@/components/Blocked'
 import Foo from '@/components/Foo'
 
 Vue.use(Router);
 
-export default new Router({
+const router = new Router({
   routes: [
     {
       path: '/',
@@ -19,9 +21,27 @@ export default new Router({
         props: true,
     },
     {
-      path: '/findme',
-      name: 'findme',
-      component: HelloWorld
+      path: '/blocked',
+      name: 'blocked',
+      meta: { requireAuth: true },
+      component: Blocked
     },
   ]
+});
+
+router.beforeEach((to, from, next) => {
+  if (to.matched.some(record => record.meta.requireAuth)) {
+    if (!store.state.isLoggedIn) {
+      next({
+        path: '/foo',
+        query: { redirect: to.fullPath },
+      });
+    } else {
+      next();
+    }
+  } else {
+    next();
+  }
 })
+
+export default router

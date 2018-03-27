@@ -59,25 +59,24 @@
     methods: {
       register() {
         this.$http.post('/register', { username: this.username, password: this.password }, {timeout: 3000})
-          .then(request => this._onLoginSuccess(request))
-          .catch(error => this._onLoginFailed(error));
+          .then(request => this._onAuthSuccess(request))
+          .catch(error => this._onAuthFailed(error));
       },
 
       login() {
         console.log(this.username, this.password)
         this.$http.post('/login', { username: this.username, password: this.password }, {timeout: 3000})
-          .then(request => this._onLoginSuccess(request))
-          .catch(error => this._onLoginFailed(error));
+          .then(request => this._onAuthSuccess(request))
+          .catch(error => this._onAuthFailed(error));
       },
 
       loginGuestUser() {
 
       },
 
-      _onLoginSuccess(req) {
-        console.log("foo")
+      _onAuthSuccess(req) {
         if (!req.data.token) {
-          this._onLoginFailed();
+          this._onAuthFailed();
           return;
         }
 
@@ -85,12 +84,10 @@
         this.error = false;
         
         // this will probably need to take some params from the parent/router that tells it where to redirect to after authorizing 
-        this.$router.replace(this.$route.query.redirect || "/findme");
+        this.$router.replace(this.$route.query.redirect || "/blocked");
       },
 
-      _onLoginFailed(error) {
-                console.log("bar")
-
+      _onAuthFailed(error) {
         this.error = 'Your user name and password did not match our records.';
         delete localStorage.token;
       }
