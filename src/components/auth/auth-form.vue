@@ -1,5 +1,5 @@
 <template lang="pug">
-  form(@submit.prevent="register")
+  form
     .input-group(v-bind:class="{ 'input-group--error': $v.username.$error }")
       label(for="username") Username
       input.brite-input(
@@ -22,9 +22,13 @@
         span.brite-error(v-if="!$v.password.required && $v.password.$dirty") Please enter your password
         span.brite-error(v-if="!$v.password.minLength") Please enter a password of at least 6 characters
     button.brite-button.blue(
-      type='submit'
       :disabled="$v.$invalid"
-    ) Submit
+      @click="register"
+    ) Register
+    button.brite-button.blue(
+      :disabled="$v.$invalid"
+      @click="login"
+    ) Log In
     span.brite-error(v-if="error") {{ error }}
 </template>
 
@@ -40,6 +44,7 @@
         error: false,
       }
     },
+
     validations: {
       username: {
         required,
@@ -50,15 +55,17 @@
         minLength: minLength(6),
       },
     },
+
     methods: {
       register() {
-        this.$http.post('/users', { username: this.username, password: this.password }, {timeout: 3000})
+        this.$http.post('/register', { username: this.username, password: this.password }, {timeout: 3000})
           .then(request => this._onLoginSuccess(request))
           .catch(error => this._onLoginFailed(error));
       },
 
       login() {
-        this.$http.get('/users', { username: this.username, password: this.password })
+        console.log(this.username, this.password)
+        this.$http.post('/login', { username: this.username, password: this.password }, {timeout: 3000})
           .then(request => this._onLoginSuccess(request))
           .catch(error => this._onLoginFailed(error));
       },
@@ -68,6 +75,7 @@
       },
 
       _onLoginSuccess(req) {
+        console.log("foo")
         if (!req.data.token) {
           this._onLoginFailed();
           return;
@@ -81,6 +89,8 @@
       },
 
       _onLoginFailed(error) {
+                console.log("bar")
+
         this.error = 'Your user name and password did not match our records.';
         delete localStorage.token;
       }
