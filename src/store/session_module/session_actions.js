@@ -1,8 +1,14 @@
 import Vue from 'vue';
+import {
+  AUTH_ATTEMPT,
+  LOGIN_SUCCESS,
+  LOGOUT,
+} from "./session_mutations";
 
 export const sessionActions = {
+  
   login({ commit }, creds) {
-    commit("AUTH_ATTEMPT");
+    commit(AUTH_ATTEMPT);
     return new Promise( (resolve, reject) => {
       Vue.axios.post("/login", creds, { timeout: 3000 })
         .then(res => {
@@ -11,7 +17,7 @@ export const sessionActions = {
           }
   
           localStorage.token = res.data.token;
-          commit("LOGIN_SUCCESS", res.data.userId);
+          commit(LOGIN_SUCCESS, res.data.userId);
           resolve(res);
         })
         .catch(error => reject(error));
@@ -20,11 +26,11 @@ export const sessionActions = {
 
   logout({ commit }) {
     delete localStorage.token;
-    commit("LOGOUT");
+    commit(LOGOUT);
   },
 
   register({ commit }, creds) {
-    commit("AUTH_ATTEMPT");
+    commit(AUTH_ATTEMPT);
     return new Promise( (resolve, reject) => {
       Vue.axios.post('/register', creds, { timeout: 3000 })
         .then(res => {
@@ -33,7 +39,7 @@ export const sessionActions = {
           }
 
           localStorage.token = res.data.token;
-          commit("LOGIN_SUCCESS", res.data.userId);
+          commit(LOGIN_SUCCESS, res.data.userId);
           resolve(res);
         })
         .catch(error => reject(error));
