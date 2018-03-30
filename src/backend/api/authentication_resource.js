@@ -55,4 +55,8 @@ router.post('/register', (req, res) => {
   });
 });
 
+router.post('/logout', (req, res) => {
+  
+});
+
 module.exports = router;

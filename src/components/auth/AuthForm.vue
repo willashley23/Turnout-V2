@@ -27,13 +27,14 @@
     ) Register
     button.brite-button.blue(
       :disabled="$v.$invalid"
-      @click="login"
-    ) Log In
+      @click="handleAuthEvent"
+    ) {{ buttonText }}
     span.brite-error(v-if="error") {{ error }}
 </template>
 
 <script>
   import { required, minLength } from 'vuelidate/lib/validators'
+import { log } from 'util';
 
   export default {
     name: 'AuthForm',
@@ -45,6 +46,16 @@
       }
     },
 
+    computed: {
+      currentUser() {
+        return this.$store.state.session.currentUser;
+      },
+
+      buttonText() {
+        return this.$store.state.session.currentUser ? "Log Out" : "Log In";
+      },
+    },
+
     validations: {
       username: {
         required,
@@ -52,7 +63,7 @@
       },
       password: {
         required,
-        minLength: minLength(6),
+        minLength: minLength(4),
       },
     },
 
@@ -63,10 +74,23 @@
           .catch(error => this._onAuthFailed(error));
       },
 
-      login() {
+      handleAuthEvent() {
+        if (this.currentUser) {
+          this._logout();
+        } else {
+         this._login();
+        }
+      },
+
+      _login() {
         this.$store.dispatch('login', { username: this.username, password: this.password })
           .then(res => this._onAuthSuccess(res))
           .catch(error => this._onAuthFailed(error));
+      },
+
+      _logout() {
+        this.$store.dispatch('logout');
+        this.$router.replace("/");
       },
 
       loginGuestUser() {
