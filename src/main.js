@@ -8,9 +8,11 @@ import store from './store'
 import axios from './backend/axios.js'
 import Vuelidate from 'vuelidate'
 import VueAxios from 'vue-axios'
+import VModal from 'vue-js-modal'
 
 Vue.use(VueAxios, axios)
 Vue.use(Vuelidate)
+Vue.use(VModal)
 
 Vue.config.productionTip = false;
 

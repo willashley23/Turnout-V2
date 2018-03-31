@@ -3,7 +3,7 @@
     .brand Turnout
     a.nav-item(
       v-if="!currentUser"
-      @click="register"
+      @click="handleAuthEvent"
     ) Register
     a.nav-item.auth(
       @click="handleAuthEvent"
@@ -24,23 +24,30 @@
       buttonText() {
         return this.$store.state.session.currentUser ? "Log Out" : "Log In";
       },
+    },
+    methods: {
+      handleAuthEvent() {
+        // open modal
+        console.log(this.$modal)
+        this.$modal.show("auth-modal");
+      },
     }
   }
 </script>
 
 <style lang="scss" scoped>
   $brite-orange: #f6682F;
-  $brite-grey: #f8f8f8;
-  $brite-medium-grey: #EFF2F5;
-  $brite-extra-light-gray: #EFF2F5;
-  $brite-white: #ffffff;
-  $brite-charcoal: #45494E;
+  $grey: #f8f8f8;
+  $medium-grey: #EFF2F5;
+  $extra-light-gray: #EFF2F5;
+  $white: #ffffff;
+  $charcoal: #45494E;
 
   .brite-navbar {
     height: 61px;
     display: flex;
     align-items: center;
-    background-color: $brite-white;
+    background-color: $white;
 
     .brand {
       font-size: 20px;
@@ -51,14 +58,14 @@
     }
 
     .nav-item {
-      color: $brite-charcoal;
+      color: $charcoal;
       padding: 22px 20px;
       cursor: pointer; 
-      border-left: 1px solid $brite-extra-light-gray;
-      border-right: 1px solid $brite-extra-light-gray;
+      border-left: 1px solid $extra-light-gray;
+      border-right: 1px solid $extra-light-gray;
 
       &:hover {
-        background: $brite-medium-grey;
+        background: $medium-grey;
       }
 
       &.auth {
