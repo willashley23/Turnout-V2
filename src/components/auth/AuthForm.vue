@@ -1,5 +1,10 @@
 <template lang="pug">
   form
+    .logo-container
+      span.brite-orange-logo
+        i(class="eds-vector-image eds-brand--small eds-vector-image--white eds-vector-image-size--reset" data-spec="icon" aria-hidden="true")
+          svg(id="eds-icon--logo-e-brand_svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 24")
+            path(d="M15.6 19.5c0-.15-.15-.15-.3-.15H5.25c-.15 0-.3-.15-.3-.3v-4.5c0-.15.15-.3.3-.3h8.7c.15 0 .3-.15.3-.3V9.9c0-.15-.15-.3-.3-.3h-8.7c-.15 0-.3-.15-.3-.3V4.8c0-.15.15-.3.3-.3H15c.15 0 .3-.15.3-.3V.3c0-.15-.15-.3-.3-.3H4.05C1.8 0 0 1.8 0 4.05v19.8s.15.15.3.15h11.55c4.35 0 4.05-3.6 3.75-4.5" id="eds-icon--logo-e-brand_base")
     .input-group(v-bind:class="{ 'input-group--error': $v.username.$error }")
       label(for="username") Username
       input.brite-input(
@@ -34,7 +39,6 @@
 
 <script>
   import { required, minLength } from 'vuelidate/lib/validators'
-import { log } from 'util';
 
   export default {
     name: 'AuthForm',
@@ -113,6 +117,37 @@ import { log } from 'util';
 </script>
 
 <style lang="scss" scoped>
+  $brite-orange: #f6682F;
+
+  .logo-container {
+    animation: pop cubic-bezier(.4,0,.3,1) .24s;
+    animation-delay: .24s;
+  }
+
+  .brite-orange-logo {
+    display: inline-block;
+    width: 72px;
+    height: 72px;
+    border-radius: 50%;
+    background-color: $brite-orange;
+
+    i {
+      display: inline-block;
+      vertical-align: middle;
+      background-size: contain;
+      margin: 24px;
+      text-align: center;
+      width: 24px!important;
+      height: 24px;
+
+      svg {
+        width: 100%;
+        height: 100%;
+        fill: white;
+      }
+    }
+  }
+  
   form {
     display: flex;
     flex-direction: column;
@@ -179,6 +214,16 @@ import { log } from 'util';
       border: 1px solid #e5e5e5;
       color: #e5e5e5;
       cursor: default;
+    }
+  }
+
+  @keyframes pop {
+    20% {
+      transform: scale(.9);
+    }
+
+    50% {
+      transform: scale(1.2);
     }
   }
 </style>

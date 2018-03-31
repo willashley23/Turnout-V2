@@ -11,9 +11,12 @@
     a.nav-item.create-event(
       v-if="currentUser"
     ) Create Event
+    auth-modal
 </template>
 
 <script>
+  import authModal from './modals/AuthModal.vue';
+
   export default {
     name: 'TheNavBar',
     computed: {
@@ -25,6 +28,7 @@
         return this.$store.state.session.currentUser ? "Log Out" : "Log In";
       },
     },
+    components: { authModal },
     methods: {
       handleAuthEvent() {
         // open modal
