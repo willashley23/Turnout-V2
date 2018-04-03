@@ -64,7 +64,12 @@ exports.cssLoaders = function (options) {
       {
         loader: 'sass-resources-loader',
         options: {
-          resources: [path.resolve(__dirname, '../src/style/_variables.scss'), path.resolve(__dirname, '../src/style/_buttons.scss')]
+          resources: [
+            path.resolve(__dirname, '../src/style/_variables.scss'), 
+            path.resolve(__dirname, '../src/style/_buttons.scss'),
+            path.resolve(__dirname, '../src/style/_classes.scss'),
+            path.resolve(__dirname, '../src/style/_animations.scss'),
+          ]
         }
       }
     ),

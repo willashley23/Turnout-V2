@@ -70,6 +70,5 @@
         border-left: none;
       }
     }
-
   }
 </style>

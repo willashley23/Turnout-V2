@@ -171,58 +171,11 @@
   }
 
   .brite-error {
-    color: tomato;
-    font-size: 13px;
-    display: inline-block;
-    margin-top: 5px;
-    margin-left: 2px;
     text-align: left;
     width: 255px;
   }
 
   .brite-button {
     width: 255px;
-    vertical-align: baseline;
-    zoom: 1;
-    font-weight: 600;
-    color: #fff;
-    transition: all .2s ease-out;
-    position: relative;
-    border: 0;
-    padding: 11px 20px;
-    margin-top: 10px;
-    text-align: center;
-    text-decoration: none;
-    line-height: 22px;
-    font-weight: 600;
-    font-size: 14px;
-    text-transform: uppercase;
-    border-radius: 3px;
-    cursor: pointer;
-
-    &.blue {
-      background-color: #0093D7;
-    }
-
-    &:hover {
-      background-color: darken($color: #0093d7, $amount: 15%);
-    }
-
-    &:disabled {
-      background: #fff;
-      border: 1px solid #e5e5e5;
-      color: #e5e5e5;
-      cursor: default;
-    }
-  }
-
-  @keyframes pop {
-    20% {
-      transform: scale(.9);
-    }
-
-    50% {
-      transform: scale(1.2);
-    }
   }
 </style>

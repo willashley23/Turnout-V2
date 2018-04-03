@@ -1,0 +1,33 @@
+.brite-button {
+  vertical-align: baseline;
+  zoom: 1;
+  color: $white;
+  transition: all .2s ease-out;
+  position: relative;
+  border: 0;
+  border-radius: 3px;
+  padding: 11px 20px;
+  margin-top: 10px;
+  text-align: center;
+  text-decoration: none;
+  text-transform: uppercase;
+  line-height: 22px;
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+
+  &.blue {
+    background-color: $brite-blue;
+  }
+
+  &:hover {
+    background-color: darken($color: $brite-blue, $amount: 15%);
+  }
+
+  &:disabled {
+    background: $white;
+    border: 1px solid #e5e5e5;
+    color: #e5e5e5;
+    cursor: default;
+  }
+}

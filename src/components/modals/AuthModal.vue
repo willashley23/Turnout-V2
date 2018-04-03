@@ -32,7 +32,7 @@ export default {
 
   .v--modal-overlay[data-modal="auth-modal"] {
     background: transparent;
-    animation: pop cubic-bezier(.4,0,.3,1) .16s;
+    animation: pulse cubic-bezier(.4,0,.3,1) .16s;
     animation-fill-mode: forwards;
   }
 
@@ -65,17 +65,6 @@ export default {
         }
       }
     }
-
-    @keyframes pop {
-      0% {
-        transform: scale(.9);
-      }
-
-      100% {
-        transform: scale(1);
-      }
-    }
-    
   }
 </style>
 
