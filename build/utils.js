@@ -69,6 +69,7 @@ exports.cssLoaders = function (options) {
             path.resolve(__dirname, '../src/style/_buttons.scss'),
             path.resolve(__dirname, '../src/style/_classes.scss'),
             path.resolve(__dirname, '../src/style/_animations.scss'),
+            path.resolve(__dirname, '../src/style/_inputs.scss'),
           ]
         }
       }

@@ -5,6 +5,7 @@
         i(class="eds-vector-image eds-brand--small eds-vector-image--white eds-vector-image-size--reset" data-spec="icon" aria-hidden="true")
           svg(id="eds-icon--logo-e-brand_svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 24")
             path(d="M15.6 19.5c0-.15-.15-.15-.3-.15H5.25c-.15 0-.3-.15-.3-.3v-4.5c0-.15.15-.3.3-.3h8.7c.15 0 .3-.15.3-.3V9.9c0-.15-.15-.3-.3-.3h-8.7c-.15 0-.3-.15-.3-.3V4.8c0-.15.15-.3.3-.3H15c.15 0 .3-.15.3-.3V.3c0-.15-.15-.3-.3-.3H4.05C1.8 0 0 1.8 0 4.05v19.8s.15.15.3.15h11.55c4.35 0 4.05-3.6 3.75-4.5" id="eds-icon--logo-e-brand_base")
+    
     .input-group(v-bind:class="{ 'input-group--error': $v.username.$error }")
       label(for="username") Username
       input.brite-input(
@@ -26,14 +27,19 @@
       .input-group-errors
         span.brite-error(v-if="!$v.password.required && $v.password.$dirty") Please enter your password
         span.brite-error(v-if="!$v.password.minLength") Please enter a password of at least 6 characters
-    button.brite-button.blue(
-      :disabled="$v.$invalid"
-      @click="register"
-    ) Register
-    button.brite-button.blue(
-      :disabled="$v.$invalid"
-      @click="handleAuthEvent"
-    ) {{ buttonText }}
+    
+    .button-container
+      button.brite-button.orange.pill(
+        :disabled="$v.$invalid"
+        @click="register"
+      ) 
+        | Register
+      button.brite-button.orange.pill(
+        :disabled="$v.$invalid"
+        @click="handleAuthEvent"
+      ) 
+        | {{ buttonText }}
+
     span.brite-error(v-if="error") {{ error }}
 </template>
 
@@ -158,16 +164,12 @@
     text-align: left;
   }
 
-  input {
+  .button-container {
+    display: flex;
+  }
+
+  .brite-input {
     width: 255px;
-    height: 50px;
-    border-radius: 3px;
-    border: none;
-    background-color: #eee;
-    outline: none;
-    font-size: 14px;
-    padding-left: 10px;
-    box-sizing: border-box;
   }
 
   .brite-error {

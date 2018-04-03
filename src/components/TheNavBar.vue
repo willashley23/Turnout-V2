@@ -1,6 +1,9 @@
 <template lang="pug">
   .brite-navbar
-    .brand Turnout
+    .brand
+      router-link(
+        :to="{ name: 'HelloWorld' }"
+      ) Turnout
     a.nav-item(
       v-if="!currentUser"
       @click="handleAuthEvent"
@@ -31,9 +34,12 @@
     components: { authModal },
     methods: {
       handleAuthEvent() {
-        // open modal
-        console.log(this.$modal)
-        this.$modal.show("auth-modal");
+        if (this.$store.state.session.currentUser) {
+          this.$store.dispatch('logout');
+          this.$router.replace("/");
+        } else {
+          this.$modal.show("auth-modal");
+        }
       },
     }
   }
@@ -53,14 +59,19 @@
       padding: 0 20px;
       flex: 1;
       text-align: left;
+
+      a {
+        text-decoration: none;
+        color: inherit;
+      }
     }
 
     .nav-item {
       color: $charcoal;
       padding: 22px 20px;
       cursor: pointer; 
-      border-left: 1px solid $extra-light-gray;
-      border-right: 1px solid $extra-light-gray;
+      border-left: 1px solid $extra-light-grey;
+      border-right: 1px solid $extra-light-grey;
 
       &:hover {
         background: $light-grey;

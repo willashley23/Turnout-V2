@@ -1,0 +1,22 @@
+.brite-input {
+  display: block;
+  height: 100%;
+  padding: 8px 12px 9px;
+  box-sizing: border-box;
+  border: 1px solid $border-grey;
+  background-color: $white;
+  border-radius: 2px;
+  outline: none;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  -webkit-appearance: none;
+
+  &:hover {
+    border: 1px solid darken($color: $border-grey, $amount: 4%);
+  }
+
+  &:focus {
+    border: 1px solid $aqua;
+  }
+}

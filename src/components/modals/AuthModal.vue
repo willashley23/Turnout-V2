@@ -20,7 +20,6 @@ export default {
       console.log("helloooo");
     },
   },
-  
 }
 </script>
 

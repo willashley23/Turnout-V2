@@ -33,7 +33,7 @@ router.beforeEach((to, from, next) => {
   if (to.matched.some(record => record.meta.requireAuth)) {
     if (!store.state.session.currentUser) {
       next({
-        path: '/foo',
+        path: '/',
         query: { redirect: to.fullPath },
       });
     } else {
