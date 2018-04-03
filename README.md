@@ -66,7 +66,6 @@ npm test
 ## Tasks
 
 ### Refactor
- - `$colors`, `$animations` and brand-generic classes (`.brite-button`) into shared reusable file
  - Create shared close button out of the current one
  - Find more ways to abstract modal logic
  - Find way to use the route blocking to show the modal globally and redirect to "/"
