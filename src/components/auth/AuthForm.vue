@@ -117,7 +117,6 @@
 </script>
 
 <style lang="scss" scoped>
-  $brite-orange: #f6682F;
 
   .logo-container {
     animation: pop cubic-bezier(.4,0,.3,1) .24s;

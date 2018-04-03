@@ -40,12 +40,6 @@
 </script>
 
 <style lang="scss" scoped>
-  $brite-orange: #f6682F;
-  $grey: #f8f8f8;
-  $medium-grey: #EFF2F5;
-  $extra-light-gray: #EFF2F5;
-  $white: #ffffff;
-  $charcoal: #45494E;
 
   .brite-navbar {
     height: 61px;
@@ -69,7 +63,7 @@
       border-right: 1px solid $extra-light-gray;
 
       &:hover {
-        background: $medium-grey;
+        background: $light-grey;
       }
 
       &.auth {

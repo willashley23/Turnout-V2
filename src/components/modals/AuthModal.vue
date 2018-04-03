@@ -25,8 +25,6 @@ export default {
 </script>
 
 <style lang="scss">
-  $medium-gray: #f8f8fa;
-  $dark-charcoal: #363a43;
 
   form {
     padding-top: 80px;
