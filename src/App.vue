@@ -15,7 +15,6 @@ export default {
 
 <style lang="scss">
   @import './static/scss/reset.scss';
-  $brite-grey: #f8f8f8;
 
   #app {
     font-family: 'Avenir', Helvetica, Arial, sans-serif;
@@ -24,7 +23,9 @@ export default {
     text-align: center;
     color: #2c3e50;
   }
+
   body {
-    background-color: $brite-grey;
+    background-color: $grey;
+    color: $charcoal;
   }
 </style>

@@ -11,6 +11,10 @@
     a.nav-item.auth(
       @click="handleAuthEvent"
     ) {{ buttonText }}
+    router-link.nav-item(
+      v-if="currentUser"
+      :to="{ name: 'UserProfile' }"
+    ) Profile
     a.nav-item.create-event(
       v-if="currentUser"
     ) Create Event
@@ -74,6 +78,7 @@
       cursor: pointer; 
       border-left: 1px solid $extra-light-grey;
       border-right: 1px solid $extra-light-grey;
+      text-decoration: none;
 
       &:hover {
         background: $light-grey;
@@ -81,6 +86,10 @@
 
       &:nth-of-type(1) {
         border-right: none;
+      }
+
+      &:last-of-type {
+        border-left: none;
       }
     }
   }
