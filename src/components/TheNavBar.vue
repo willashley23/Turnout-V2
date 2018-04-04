@@ -4,17 +4,20 @@
       router-link(
         :to="{ name: 'HelloWorld' }"
       ) Turnout
-    a.nav-item(
-      v-if="!currentUser"
-      @click="handleAuthEvent"
-    ) Register
-    a.nav-item.auth(
-      @click="handleAuthEvent"
-    ) {{ buttonText }}
     router-link.nav-item(
       v-if="currentUser"
       :to="{ name: 'UserProfile' }"
-    ) Profile
+    ) 
+      | Profile
+      i.user-avatar-icon.ico-avatar
+    a.nav-item(
+      v-else
+      @click="handleAuthEvent"
+    ) Register
+    a.nav-item(
+      @click="handleAuthEvent"
+    ) {{ buttonText }}
+      
     a.nav-item.create-event(
       v-if="currentUser"
     ) Create Event
@@ -72,6 +75,9 @@
       }
     }
 
+    .ico-avatar:before {
+  content: ""; }
+
     .nav-item {
       color: $charcoal;
       padding: 22px 20px;
@@ -79,6 +85,10 @@
       border-left: 1px solid $extra-light-grey;
       border-right: 1px solid $extra-light-grey;
       text-decoration: none;
+      text-transform: uppercase;
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.5px;
 
       &:hover {
         background: $light-grey;
@@ -90,6 +100,16 @@
 
       &:last-of-type {
         border-left: none;
+      }
+
+      &.create-event {
+        color: $brite-blue;
+        transition: all .3s cubic-bezier(.4,0,.3,1);
+
+        &:hover {
+          color: darken($color: $brite-blue, $amount: 50%);
+          background: transparent;
+        }
       }
     }
   }

@@ -14,6 +14,7 @@
       input.brite-input(
         v-model.trim="username" 
         v-bind:class="{ 'brite-input--error': $v.username.$error }"
+        v-focus=""
         type="text"
         @input="$v.username.$touch()" 
       )

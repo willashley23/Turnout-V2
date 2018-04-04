@@ -71,8 +71,7 @@ npm test
  - Find way to use the route blocking to show the modal globally and redirect to "/"
  - Investigate `mapState` to avoid `this.$store.state.foo.bar.baz`
  - Use `async` instead of `promises`
- 
- 
+ - Refactor `currentUser()` `computed` property into a mixin (see vue mixin docs) 
 
  ### Optimizations
  - Investigate way around having to include modal component inside each rendering instance

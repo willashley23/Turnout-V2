@@ -1,5 +1,5 @@
 <template lang="pug">
-  modal(name="auth-modal" @before-open="beforeOpen" height="100%" width="100%") 
+  modal(name="auth-modal" height="100%" width="100%") 
     .close
       span  
         button(@click="$modal.hide('auth-modal')")
