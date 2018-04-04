@@ -56,13 +56,15 @@
     .brand {
       font-size: 20px;
       color: $brite-orange;
-      padding: 0 20px;
       flex: 1;
       text-align: left;
+  
 
       a {
         text-decoration: none;
         color: inherit;
+        padding: 22px 20px;
+        border-right: 1px solid $extra-light-grey;
       }
     }
 
@@ -77,8 +79,8 @@
         background: $light-grey;
       }
 
-      &.auth {
-        border-left: none;
+      &:nth-of-type(1) {
+        border-right: none;
       }
     }
   }

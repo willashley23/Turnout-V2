@@ -16,7 +16,11 @@
     border: 1px solid darken($color: $border-grey, $amount: 4%);
   }
 
-  &:focus {
+  &:focus:not(.brite-input--error) {
     border: 1px solid $aqua;
+  }
+
+  &.brite-input--error {
+    border: 1px solid $red;
   }
 }

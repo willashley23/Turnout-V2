@@ -15,11 +15,6 @@ import authForm from '../auth/AuthForm.vue'
 export default {
   name: 'AuthModal',
   components: { authForm },
-  methods: {
-    beforeOpen (event) {
-      console.log("helloooo");
-    },
-  },
 }
 </script>
 

@@ -69,6 +69,9 @@ npm test
  - Create shared close button out of the current one
  - Find more ways to abstract modal logic
  - Find way to use the route blocking to show the modal globally and redirect to "/"
+ - Investigate `mapState` to avoid `this.$store.state.foo.bar.baz`
+ - Use `async` instead of `promises`
+ 
  
 
  ### Optimizations
