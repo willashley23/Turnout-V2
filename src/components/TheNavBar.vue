@@ -59,6 +59,7 @@
     display: flex;
     align-items: center;
     background-color: $white;
+    border-bottom: 1px solid $border-grey;
 
     .brand {
       font-size: 20px;

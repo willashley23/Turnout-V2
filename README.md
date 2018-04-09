@@ -19,13 +19,11 @@ It is a solid stack that served me well. But the world of the web does not sit s
 * Node
 * Sequelize
 * Axios
-* Epilogue
 * Sass
 * Pug
 * Mocha and Chai / Jest
 * Cypress
 * Webpack
-* Some Crypto Library
 
 Let me go over these choices bit by bit
 
@@ -62,16 +60,3 @@ npm run unit
 # run all tests
 npm test
 ```
-
-## Tasks
-
-### Refactor
- - Create shared close button out of the current one
- - Find more ways to abstract modal logic
- - Find way to use the route blocking to show the modal globally and redirect to "/"
- - Investigate `mapState` to avoid `this.$store.state.foo.bar.baz`
- - Use `async` instead of `promises`
- - Refactor `currentUser()` `computed` property into a mixin (see vue mixin docs) 
-
- ### Optimizations
- - Investigate way around having to include modal component inside each rendering instance

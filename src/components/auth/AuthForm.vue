@@ -37,20 +37,21 @@
     .button-container
       button.brite-button.orange.pill(
         :disabled="$v.$invalid"
-        @click="register"
+        @click="handleAuthEvent('register')"
       ) 
         | Sign Up
       button.brite-button.orange.pill(
         :disabled="$v.$invalid"
-        @click="login"
+        @click="handleAuthEvent('login')"
       ) 
-        | {{ buttonText }}
+        | Log In
 
     span.brite-error.centered(v-if="error") {{ error }}
 </template>
 
 <script>
   import { required, minLength } from 'vuelidate/lib/validators'
+  import { mapState } from "vuex";
 
   export default {
     name: 'AuthForm',
@@ -62,15 +63,9 @@
       }
     },
 
-    computed: {
-      currentUser() {
-        return this.$store.state.session.currentUser;
-      },
-
-      buttonText() {
-        return this.$store.state.session.currentUser ? "Log Out" : "Log In";
-      },
-    },
+    computed: mapState({
+      currentUser: state => state.session.currentUser,
+    }),
 
     validations: {
       username: {
@@ -84,16 +79,14 @@
     },
 
     methods: {
-      register() {
-        this.$store.dispatch("register", { username: this.username, password: this.password })
-          .then(res => this._onAuthSuccess(res))
-          .catch(error => this._onAuthFailed(error));
-      },
-
-      login() {
-        this.$store.dispatch("login", { username: this.username, password: this.password })
-          .then(res => this._onAuthSuccess(res))
-          .catch(error => this._onAuthFailed(error));
+      async handleAuthEvent(type) {
+        const payload = { username: this.username, password: this.password };
+        try {
+          const response = await this.$store.dispatch(type, payload);
+          this._onAuthSuccess(response);
+        } catch (error) {
+          this._onAuthFailed()
+        }
       },
 
       _onAuthSuccess() {

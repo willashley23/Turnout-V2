@@ -10,16 +10,16 @@ export default {
     currentUser: !!localStorage.getItem("token"),
   },
   mutations: {
-    [AUTH_ATTEMPT] (state) {
+    [AUTH_ATTEMPT](state) {
       state.pending = true;
     },
 
-    [LOGIN_SUCCESS] (state, id) {
+    [LOGIN_SUCCESS](state, id) {
       state.pending = false;
       state.currentUser = { id };
     },
 
-    [LOGOUT] (state) {
+    [LOGOUT](state) {
       state.currentUser = false;
     },
   },
