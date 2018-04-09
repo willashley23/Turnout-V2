@@ -15,7 +15,8 @@ import authForm from './auth/AuthForm.vue'
 
 export default {
         name: 'Foo',
-        data () {
+        components: { authForm },
+        data() {
             return {
                 foo: 2,
             }
@@ -25,8 +26,6 @@ export default {
             return this.$store.state.count;
           },
         },
-        props: ['num'],
-        components: { authForm },
         methods: {
           add: function() {
               this.$store.commit('increment');

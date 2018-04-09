@@ -54,7 +54,7 @@
 
   export default {
     name: 'AuthForm',
-    data () {
+    data() {
       return {
         username: '',
         password: '',
@@ -96,7 +96,7 @@
           .catch(error => this._onAuthFailed(error));
       },
 
-      _onAuthSuccess(res) {
+      _onAuthSuccess() {
         this.error = false;
 
         this.$modal.hide("auth-modal");
@@ -105,7 +105,7 @@
         this.$router.replace(this.$route.query.redirect || "/blocked");
       },
 
-      _onAuthFailed(error) {
+      _onAuthFailed() {
         this.error = "Your user name and password did not match our records.";
         delete localStorage.token;
       }
