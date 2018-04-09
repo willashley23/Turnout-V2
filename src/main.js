@@ -26,6 +26,6 @@ new Vue({
   router,
   axios,
   store,
-  template: '<App/>',
   components: { App },
+  template: '<App/>',
 });

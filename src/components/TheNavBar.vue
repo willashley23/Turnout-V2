@@ -17,7 +17,7 @@
     a.nav-item(
       @click="handleAuthEvent"
     ) {{ buttonText }}
-      
+    
     a.nav-item.create-event(
       v-if="currentUser"
     ) Create Event
@@ -29,6 +29,7 @@
 
   export default {
     name: 'TheNavBar',
+    components: { authModal },
     computed: {
       currentUser() {
         return this.$store.state.session.currentUser;
@@ -38,7 +39,6 @@
         return this.$store.state.session.currentUser ? "Log Out" : "Log In";
       },
     },
-    components: { authModal },
     methods: {
       handleAuthEvent() {
         if (this.$store.state.session.currentUser) {
@@ -75,12 +75,9 @@
       }
     }
 
-    .ico-avatar:before {
-  content: ""; }
-
     .nav-item {
       color: $charcoal;
-      padding: 22px 20px;
+      padding: 24px 20px;
       cursor: pointer; 
       border-left: 1px solid $extra-light-grey;
       border-right: 1px solid $extra-light-grey;
@@ -98,13 +95,10 @@
         border-right: none;
       }
 
-      &:last-of-type {
-        border-left: none;
-      }
-
       &.create-event {
         color: $brite-blue;
         transition: all .3s cubic-bezier(.4,0,.3,1);
+        border-left: none;
 
         &:hover {
           color: darken($color: $brite-blue, $amount: 50%);
