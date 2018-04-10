@@ -38,7 +38,7 @@ User.verifyPassword = (password, user) => {
   });
 }
 
-User.beforeCreate( (user) => {
+User.beforeCreate( user => {
   return new Promise((resolve, reject) => {
     User.setPassword(user.password, (err, hash) => {
       if (err) reject(err);

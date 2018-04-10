@@ -1,8 +1,6 @@
 const User = require('../models/user');
 const jwt = require('jsonwebtoken');
-const crypto = require('crypto');
 const router = require('express').Router()
-//tbd some crypto import
 
 router.post('/login', (req, res) => {
   
@@ -26,24 +24,18 @@ router.post('/login', (req, res) => {
                 username: user.username 
               });
             } else {
-              res.send(500, {
-                error: true,
-              });
+              res.status(500).send({ error: true, });
             }
           })
           .catch((error) => {
-            res.send(500, {
-              error: error,
-            });
+            res.status(500).send({ error: error, });
           });
       } else {
-        res.send(500, {
-          error: true,
-        });
+        res.status(500).send({ error: true, });
       }
     })
     .catch(error => {
-      res.send(500, { error: error });
+      res.status(500).send({ error: error });
     });
 });
 
@@ -58,7 +50,7 @@ router.post('/register', (req, res) => {
         'secret',
         { expiresIn: 24 * 60 * 60 });
       
-      res.send(200, {
+      res.status(200).send({
         token: signedToken,
         userId:  user.id,
         username: user.username 
