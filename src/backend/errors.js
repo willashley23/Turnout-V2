@@ -21,3 +21,9 @@ class BadRequest extends Error {
     this.statusCode = 400;
   }
 }
+
+module.exports = {
+  Unauthorized,
+  UnprocessableEntity,
+  BadRequest,
+};

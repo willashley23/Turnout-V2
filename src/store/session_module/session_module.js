@@ -1,6 +1,7 @@
 import { sessionActions } from "./session_actions";
 import {
   AUTH_ATTEMPT,
+  AUTH_FAILED,
   LOGIN_SUCCESS,
   LOGOUT,
 } from "./session_mutations";
@@ -12,6 +13,10 @@ export default {
   mutations: {
     [AUTH_ATTEMPT](state) {
       state.pending = true;
+    },
+
+    [AUTH_FAILED](state) {
+      state.pending = false;
     },
 
     [LOGIN_SUCCESS](state, id) {

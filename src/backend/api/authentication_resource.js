@@ -1,17 +1,18 @@
 const User = require('../models/user');
 const jwt = require('jsonwebtoken');
 const router = require('express').Router()
+const { UnprocessableEntity } = require('../errors');
 
 router.post('/login', async(req, res) => {
 
   try {
     const user = await User.findOne({ where: { username: req.body.username } });
     
-    if (!user) throw UnprocessableEntity('Invalid username'); 
+    if (!user) throw new UnprocessableEntity('Invalid username'); 
 
     const verified = await User.verifyPassword(req.body.password, user);
 
-    if (!verified) throw UnprocessableEntity('Invalid password');
+    if (!verified) throw new UnprocessableEntity('Invalid password');
 
     let signedToken = jwt.sign(
       { user: user.id },
