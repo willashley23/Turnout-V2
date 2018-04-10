@@ -80,9 +80,15 @@
 
     methods: {
       async handleAuthEvent(type) {
-        const payload = { username: this.username, password: this.password };
+        
+        const payload = { 
+          username: this.username, 
+          password: this.password,
+          type: type,
+        };
+
         try {
-          const response = await this.$store.dispatch(type, payload);
+          const response = await this.$store.dispatch('handleAuthEvent', payload);
           this._onAuthSuccess(response);
         } catch (error) {
           this._onAuthFailed()
