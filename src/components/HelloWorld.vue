@@ -10,12 +10,16 @@
         router-link(
             to="/bar"
         ) Bar
+    EventIndex
 </template>
 
 <script>
+import EventIndex from "./event/EventIndex.vue";
+
 export default {
   name: 'HelloWorld',
-  data () {
+  components: { EventIndex },
+  data() {
     return {
       msg: 'Welcome to Your Vue.js App'
     }
