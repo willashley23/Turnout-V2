@@ -1,15 +1,17 @@
 <template lang="pug">
-    div(id="app")
+    div#app
       TheNavBar
       router-view
+      AuthModal
 </template>
 
 <script>
 import TheNavBar from './components/TheNavBar.vue'
+import AuthModal from './components/modals/AuthModal.vue'
 
 export default {
-  name: 'turnout',
-  components: { TheNavBar },
+  name: 'Turnout',
+  components: { TheNavBar, AuthModal },
 }
 </script>
 

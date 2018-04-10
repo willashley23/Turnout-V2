@@ -32,10 +32,8 @@ const router = new Router({
 router.beforeEach((to, from, next) => {
   if (to.matched.some(record => record.meta.requireAuth)) {
     if (!store.state.session.currentUser) {
-      next({
-        path: '/',
-        query: { redirect: to.fullPath },
-      });
+      router.app.$modal.show("auth-modal");
+      next(false);
     } else {
       next();
     }

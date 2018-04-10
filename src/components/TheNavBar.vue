@@ -21,7 +21,6 @@
     a.nav-item.create-event(
       v-if="currentUser"
     ) Create Event
-    auth-modal
 </template>
 
 <script>
