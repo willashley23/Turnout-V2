@@ -25,9 +25,9 @@ export default {
     }
   },
   computed: {
-      count() {
-          return this.$store.getters.currentCount;
-      },
+    count() {
+        return this.$store.getters.currentCount;
+    },
   }
 }
 </script>

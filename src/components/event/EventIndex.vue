@@ -12,7 +12,7 @@ export default {
   components: { Event },
   data() {
     return {
-      displayedEvents: null,
+      
     }
   },
 
@@ -22,8 +22,8 @@ export default {
     ]),
   },
 
-  async mounted() {
-    this.displayedEvents = await this.$store.dispatch("fetchEvents");
+  mounted() {
+    this.$store.dispatch("fetchEvents");
   },
   methods:{},
 }

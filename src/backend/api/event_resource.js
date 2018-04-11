@@ -4,7 +4,7 @@ const { UnprocessableEntity } = require('../errors');
 
 router.get("/events", async(req, res) => {
   try {
-    const events = await Event.findAll({ attributes: ['title', 'description'] });
+    const events = await Event.findAll();
 
     if (!events) throw new UnprocessableEntity("no events found");
 

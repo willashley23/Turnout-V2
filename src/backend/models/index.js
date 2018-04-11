@@ -13,11 +13,7 @@ db.init = app => {
     .then(() => {
       app.listen(8081, () => {
         console.log('listening to port localhost:8081');
-        const Event = require("./event");
-        Event.create({
-          title: "A demo event",
-          description: "Lots of fun here.",
-        })
+        require('../seeders/seed_events')();
       })
     });
 }
