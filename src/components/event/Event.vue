@@ -1,6 +1,6 @@
 <template lang="pug">
   .event-super-container
-    .title {{ item.title }}
+    .title {{ event.title }}
 </template>
 
 

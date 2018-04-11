@@ -1,3 +1,4 @@
+import { eventActions } from "./events_actions";
 import { 
   CREATE_EVENT, 
   DELETE_EVENT,
@@ -6,7 +7,7 @@ import {
   FETCH_FAILED,
 } from "./events_mutations"
 
-export const eventsModule = {
+export default {
   state: {
     events: [],
     pending: false,
@@ -32,7 +33,7 @@ export const eventsModule = {
       state.events = events;
     }
   },
-  actions: {}, 
+  actions: eventActions, 
   getters: {
     getEventById: state => id => {
       return state.events.find(event => event.id === id);

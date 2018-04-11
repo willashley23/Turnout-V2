@@ -1,26 +1,31 @@
 <template lang="pug">
   .events-container
-    event(v-for="event in allEvents" :key="event.id" :event="event")
+    Event(v-for="event in allEvents" :key="event.id" :event="event")
 </template>
 
 <script>
+import { mapState, mapGetters } from "vuex";
+import Event from "./Event.vue";
+
 export default {
   name: "EventIndex",
-  components: { event },
+  components: { Event },
   data() {
     return {
-      allEvents: this.$store.getters.allEvents,
       displayedEvents: null,
     }
   },
+
   computed: {
-    
+    ...mapGetters([
+      "allEvents",
+    ]),
   },
-  async created() {
-     this.displayedEvents = await this.$store.dispatch("fetchEvents");
+
+  async mounted() {
+    this.displayedEvents = await this.$store.dispatch("fetchEvents");
   },
   methods:{},
-
 }
 </script>
 

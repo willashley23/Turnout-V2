@@ -16,3 +16,5 @@ router.get("/events", async(req, res) => {
     res.status(error.statusCode || 500).send({ error: error.message });
   }
 });
+
+module.exports = router;
