@@ -2,7 +2,7 @@ const express = require('express')
 const cors = require('cors')
 const bodyParser = require('body-parser')
 const routes = require('./api');
-const db = require('./models');
+const db = require('./db/models');
 
 let app = express();
 
@@ -21,4 +21,9 @@ app.use((req, res, next) => {
   next();
 });
 
-db.init(app);
+//db.init(app);
+
+app.listen(8081, () => {
+  console.log('listening to port localhost:8081');
+  db.sequelize.sync({force: true});
+})
