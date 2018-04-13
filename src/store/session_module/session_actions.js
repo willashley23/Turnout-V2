@@ -11,7 +11,7 @@ export const sessionActions = {
   async handleAuthEvent({ commit }, params) {
     commit(AUTH_ATTEMPT);
 
-    const [res, error] = await Vue.axios.post(`${params.type}`, params, { timeout: 3000 });
+    const [res, error] = await Vue.axios.post(`${params.type}`, params, { timeout: 30000 });
     if (error) {
       commit(AUTH_FAILED);
       throw new Error(error);
