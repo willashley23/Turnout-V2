@@ -14,3 +14,4 @@ yarn-error.log*
 *.njsproj
 *.sln
 *.sqlite
+127.0.0.1
