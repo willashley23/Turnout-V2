@@ -1,11 +1,23 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
   var Event = sequelize.define('Event', {
-    title: DataTypes.STRING,
+    title: { 
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
     description: DataTypes.STRING,
-    location: DataTypes.STRING,
-    date: DataTypes.DATE,
-    imageUrl: DataTypes.STRING
+    location: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    date: {
+      type: DataTypes.DATE,
+      allowNull: false,
+    },
+    imageUrl: {
+      type: DataTypes.STRING,
+      defaultValue: "http://res.cloudinary.com/drbaijrqx/image/upload/v1523669582/default_uso7ed.png",
+    }
   }, {});
   Event.associate = function(models) {
     Event.hasMany(models.Ticket);

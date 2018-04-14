@@ -21,7 +21,7 @@ app.use((req, res, next) => {
   next();
 });
 
-db.sequelize.sync()
+db.sequelize.sync({force: true})
   .then(() => {
     app.listen(8081, () => {
       console.log('listening to port localhost:8081');
