@@ -1,7 +1,7 @@
 const User = require('../models/').User;
 const jwt = require('jsonwebtoken');
 const router = require('express').Router()
-const { UnprocessableEntity } = require('../errors');
+const { UnprocessableEntity, BadRequest } = require('../errors');
 
 router.post('/login', async(req, res) => {
 
@@ -33,6 +33,10 @@ router.post('/login', async(req, res) => {
 router.post('/register', async(req, res) => {
   
   try {
+    const knownUser = await User.findOne({ where: { username: req.body.username } });
+
+    if (knownUser) throw new UnprocessableEntity("username taken");
+
     const user = await User.create({ 
       username: req.body.username,
       password: req.body.password
@@ -49,7 +53,7 @@ router.post('/register', async(req, res) => {
       username: user.username 
     });
   } catch (error) {
-    res.status(error.statusCode || 500).send({ error: error.message });
+    res.status(error.statusCode || 500).json({ error: error.message });
   }
 });
 

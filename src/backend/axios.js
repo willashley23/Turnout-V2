@@ -14,7 +14,7 @@ const instance = axios.create({
 instance.interceptors.response.use(data => {
   return [data, null];
 }, error => {
-  return [null, error];
+  return [null, error.response.data.error || "server error"];
 });
 
 export default instance;

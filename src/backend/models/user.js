@@ -3,8 +3,29 @@ const bcrypt = require('bcrypt');
 
 module.exports = (sequelize, DataTypes) => {
   const User = sequelize.define('User', {
-    username: DataTypes.STRING,
-    password: DataTypes.STRING
+    username: {
+      type: DataTypes.STRING, 
+      unique: true,
+      allowNull: false,
+      validate: {
+        notEmpty: true,
+        len: {
+          args: [4,10],
+          msg: "username must be between 4 and 10 characters long"
+        }
+      },
+    },
+    password: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        notEmpty: true,
+        len: {
+          args: [6,32],
+          msg: "password must be between 6 and 32 characters long"
+        }
+      },
+    }
   }, {});
 
   User.setPassword = (password, cb) => {
@@ -34,7 +55,7 @@ module.exports = (sequelize, DataTypes) => {
       });
     });
   });
-  
+
   User.associate = function(models) {
     User.hasMany(models.Event, {as: "events"});
     User.hasMany(models.Ticket, {as: "tickets"});
