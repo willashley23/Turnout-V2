@@ -20,8 +20,8 @@ module.exports = (sequelize, DataTypes) => {
     }
   }, {});
   Event.associate = function(models) {
-    Event.hasMany(models.Ticket);
-    Event.hasMany(models.Bookmark);
+    Event.hasMany(models.Ticket, { as: "tickets" });
+    Event.hasMany(models.Bookmark, { as: "bookmarks" });
     Event.belongsToMany(models.Tag, {through: 'EventTag'});
     Event.belongsTo(models.User);
   };

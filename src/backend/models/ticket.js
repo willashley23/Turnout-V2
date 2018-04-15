@@ -27,7 +27,7 @@ module.exports = (sequelize, DataTypes) => {
   }, {});
   Ticket.associate = function(models) {
     Ticket.belongsTo(models.Event);
-    Ticket.belongsTo(models.User);
+    Ticket.belongsToMany(models.User, {through: 'UserTicket'});
   };
   return Ticket;
 };
