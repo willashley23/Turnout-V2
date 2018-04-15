@@ -1,13 +1,31 @@
-const express = require('express')
-const cors = require('cors')
-const bodyParser = require('body-parser')
+const express = require('express');
+const mysql = require('mysql');
+const cors = require('cors');
+const bodyParser = require('body-parser');
 const db = require('./models');
 const routes = require('./api');
+const isProduction = process.env.NODE_ENV === "production";
 
 let app = express();
 
 app.use(cors());
 app.use(bodyParser.json());
+
+// init mysql
+const connection = mysql.createConnection({
+  host: "127.0.0.1",
+  user: "turnout",
+  password: "root",
+  database: isProduction ? "database_production" : "database_development",
+});
+
+connection.connect(error => {
+  if (error) {
+    console.error(error);
+  } else {
+    console.log(`connected to ${connection.database}`)
+  }
+});
 
 // Connect all our routes to our application
 app.use('/', routes);
