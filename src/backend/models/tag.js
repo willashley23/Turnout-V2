@@ -11,7 +11,7 @@ module.exports = (sequelize, DataTypes) => {
     }
   }, {});
   Tag.associate = function(models) {
-    Tag.belongsToMany(models.Event, {through: 'EventTag'});
+    Tag.belongsToMany(models.Event, { through: 'EventTag', as: "events" });
   };
   return Tag;
 };
