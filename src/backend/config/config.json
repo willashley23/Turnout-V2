@@ -14,8 +14,8 @@
     "dialect": "mysql"
   },
   "production": {
-    "username": "root",
-    "password": null,
+    "username": "willashley23",
+    "password": "start-meadow-uncover-peach",
     "database": "database_production",
     "host": "127.0.0.1",
     "dialect": "mysql"
