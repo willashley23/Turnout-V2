@@ -2,7 +2,7 @@
   .brite-navbar
     .brand
       router-link(
-        :to="{ name: 'HelloWorld' }"
+        :to="{ name: 'EventIndex' }"
       ) Turnout
     router-link.nav-item(
       v-if="currentUser"
