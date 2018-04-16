@@ -1,3 +1,6 @@
+// load data into process.env
+require('dotenv').config()
+
 const express = require('express');
 const mysql = require('mysql');
 const cors = require('cors');
@@ -11,15 +14,12 @@ let app = express();
 app.use(cors());
 app.use(bodyParser.json());
 
-// load data into process.env
-require('dotenv').config()
-
 // init mysql
 const connection = mysql.createConnection({
-  host: "127.0.0.1",
-  user: "turnout",
-  password: "root",
-  database: isProduction ? "database_production" : "database_development",
+  host: isProduction ? process.env.DB_HOST_PROD : process.env.DB_HOST_DEV,
+  user: isProduction ? process.env.DB_USER_PROD : process.env.DB_USER_DEV,
+  password: isProduction ? process.env.DB_PASS_PROD : process.env.DB_PASS_DEV,
+  database: isProduction ? process.env.DB_NAME_PROD : process.env.DB_NAME_DEV,
 });
 
 connection.connect(error => {
