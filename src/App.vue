@@ -23,11 +23,11 @@ export default {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-align: center;
-    color: #2c3e50;
+    color: $charade;
   }
 
   body {
-    background-color: $grey;
-    color: $charcoal;
+    background-color: $medium-gray;
+    color: $charade;
   }
 </style>
