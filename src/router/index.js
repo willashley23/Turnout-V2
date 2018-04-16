@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import store from '../store'
 import HelloWorld from '@/components/HelloWorld'
 import Blocked from '@/components/Blocked'
+import EventIndex from '@/components/event/EventIndex'
 import Foo from '@/components/Foo'
 
 Vue.use(Router);
@@ -11,8 +12,8 @@ const router = new Router({
   routes: [
     {
       path: '/',
-      name: 'HelloWorld',
-      component: HelloWorld
+      name: 'EventIndex',
+      component: EventIndex
     },
     {
         path:'/foo',
