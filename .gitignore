@@ -16,4 +16,7 @@ yarn-error.log*
 *.sqlite
 *.editorconfig
 *.eslintignore
+*.env
+*.nvmrc
+package-lock.json
 127.0.0.1

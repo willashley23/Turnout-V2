@@ -11,6 +11,9 @@ let app = express();
 app.use(cors());
 app.use(bodyParser.json());
 
+// load data into process.env
+require('dotenv').config()
+
 // init mysql
 const connection = mysql.createConnection({
   host: "127.0.0.1",
@@ -20,11 +23,7 @@ const connection = mysql.createConnection({
 });
 
 connection.connect(error => {
-  if (error) {
-    console.error(error);
-  } else {
-    console.log(`connected to ${connection.database}`)
-  }
+  if (error) console.error(error);
 });
 
 // Connect all our routes to our application
@@ -39,8 +38,10 @@ app.use((req, res, next) => {
   next();
 });
 
+// sync models to the db
 db.sequelize.sync({ force: true })
   .then(() => {
+    // ..and start the server
     app.listen(8081, () => {
       console.log('listening to port localhost:8081');
     })
