@@ -2,6 +2,7 @@
   .poster-card-super-container
     .poster-card
       .poster-card-top-half
+        .price-sticker {{ priceStickerText }}
         img(:src="event.imageUrl")
       .poster-card-details
         .event-date 
@@ -42,6 +43,10 @@ export default {
         return `Tickets from $${ this.lowestFare }`;
       }
       return "Free";
+    },
+
+    priceStickerText() {
+      return this.lowestFare <= 0 ? "Free" : `$${ this.lowestFare }`;
     }
   }
 }
@@ -87,6 +92,24 @@ export default {
     max-height: 200px;
     max-width: 400px;
     position: relative;
+
+    .price-sticker {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: $light-charcoal;
+      width: 87px;
+      height: 36px;
+      font-size: 14px;
+      line-height: 1.4;
+      border-radius: 4px;
+      background-color: #fff;
+      position: absolute;
+      top: 12px;
+      right: -12px;
+      box-shadow: 0 4px 15px 0 rgba(40,44,53,.06), 0 2px 2px 0 rgba(40,44,53,.08);
+      z-index: 3;
+    }
   }
 
   .poster-card-details {
@@ -138,6 +161,7 @@ export default {
       background: $white;
       transition: opacity .24s cubic-bezier(0,0,.35,1);
       transition-delay: 80ms;
+      outline: none;
 
       &:hover {
         fill: $dark-charcoal;
@@ -157,6 +181,8 @@ export default {
       color: $dark-charcoal;
       font-size: 1.333rem;
       line-height: 1.3;
+      position: relative;
+      bottom: 2px;
     }
     
     .event-location,

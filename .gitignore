@@ -18,6 +18,7 @@ yarn-error.log*
 *.eslintignore
 *.env
 *.nvmrc
+.eslintrc.js
 127.0.0.1
 *.json
 

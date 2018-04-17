@@ -39,7 +39,7 @@ app.use((req, res, next) => {
 });
 
 // sync models to the db
-db.sequelize.sync({ force: true })
+db.sequelize.sync()
   .then(() => {
     // ..and start the server
     app.listen(8081, () => {

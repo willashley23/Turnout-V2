@@ -1,8 +1,8 @@
 <template lang="pug">
-    div#app
-      TheNavBar
-      router-view
-      AuthModal
+  div#app
+    TheNavBar
+    router-view
+    AuthModal
 </template>
 
 <script>
