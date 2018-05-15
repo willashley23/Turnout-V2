@@ -10,20 +10,14 @@ import Event from "./Event.vue";
 export default {
   name: "EventIndex",
   components: { Event },
-  data() {
-    return {
-      
-    }
+  asyncData({ store, route }) {
+    // return the Promise from the action
+    return store.dispatch("fetchEvents");
   },
-
   computed: {
     ...mapGetters([
       "allEvents",
     ]),
-  },
-
-  mounted() {
-    this.$store.dispatch("fetchEvents");
   },
   methods:{},
 }

@@ -8,6 +8,8 @@ import {
 
 export default {
   state: {
+    // do something like asyncData somewhere to fetchCurrentUser 
+    // and check the request headers for a token or some shit
     currentUser: !!localStorage.getItem("token"),
   },
   mutations: {
